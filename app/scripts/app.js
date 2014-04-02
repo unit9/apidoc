@@ -10,12 +10,20 @@ var app = angular.module('apidocApp', [
   'controllers',
   'services'
 ]);
-  app.config(function ($routeProvider,$locationProvider) {
-    $locationProvider.html5Mode(true);
+  app.config(function ($routeProvider, $locationProvider) {
+    app.$routeProvider = $routeProvider;
+//    $locationProvider.html5Mode(true);
     $routeProvider
       .when('/', {
         templateUrl: 'views/login.html',
         controller: 'loginCtrl'
+      })
+      .when('/secure', {
+        templateUrl: 'views/secure.html',
+        redirectTo: function (params, path, search) {
+          console.log('signed in:', $routeProvider.signedIn);
+          return $routeProvider.signedIn ? path : '/';
+        }
       })
       .otherwise({
         redirectTo: '/'

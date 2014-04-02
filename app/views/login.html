@@ -1,11 +1,11 @@
 <div class="loginPanel">
     <table>
         <tr>
-            <th>Login:</th><th><input class="login"></th>
+            <th>e-mail:</th><th><input ng-model="loginValue" class="login"></th>
         </tr>
         <tr>
-            <th>Password:</th><th><input class="password"></th>
+            <th>Password:</th><th><input ng-model="passwordValue" class="password"></th>
         </tr>
     </table>
-    <div class="submitButton btn btn-default">Go!</div>
+    <div ng-click="login()" class="submitButton btn btn-default">Go!</div>
 </div>
