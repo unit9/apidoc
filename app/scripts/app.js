@@ -1,17 +1,21 @@
 'use strict';
-
-angular.module('apidocApp', [
+var controllers = angular.module('controllers',[]);
+var services = angular.module('services',[]);
+var app = angular.module('apidocApp', [
   'ngCookies',
   'ngResource',
   'ngSanitize',
   'ngRoute',
-  'firebase'
-])
-  .config(function ($routeProvider) {
+  'firebase',
+  'controllers',
+  'services'
+]);
+  app.config(function ($routeProvider,$locationProvider) {
+    $locationProvider.html5Mode(true);
     $routeProvider
       .when('/', {
         templateUrl: 'views/login.html',
-        controller: 'logCtrl'
+        controller: 'loginCtrl'
       })
       .otherwise({
         redirectTo: '/'
