@@ -1,0 +1,9 @@
+<div class="addEndpointPlacehoder row">
+    <div class="logout btn btn-default col-md-12">Logout</div>
+    <input ng-model="newApiUrl" class="addApi">
+    <div ng-click="addApi()" class="btn btn-default addApiBtn">Add api</div>
+</div>
+<div class="ProjectListPlaceholder row">
+    <div class="title">Projects list : </div>
+    <div ng-repeat="project in projects">{{project}}</div>
+</div>

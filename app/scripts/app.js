@@ -10,7 +10,7 @@ var app = angular.module('apidocApp', [
   'controllers',
   'services'
 ]);
-  app.config(function ($routeProvider, $locationProvider) {
+  app.config(['$routeProvider','$locationProvider',function ($routeProvider, $locationProvider) {
     app.$routeProvider = $routeProvider;
 //    $locationProvider.html5Mode(true);
     $routeProvider
@@ -18,8 +18,9 @@ var app = angular.module('apidocApp', [
         templateUrl: 'views/login.html',
         controller: 'loginCtrl'
       })
-      .when('/secure', {
-        templateUrl: 'views/secure.html',
+      .when('/dashboard', {
+        templateUrl: 'views/dashboard.html',
+        controller: 'dashboardCtrl',
         redirectTo: function (params, path, search) {
           console.log('signed in:', $routeProvider.signedIn);
           return $routeProvider.signedIn ? path : '/';
@@ -28,4 +29,4 @@ var app = angular.module('apidocApp', [
       .otherwise({
         redirectTo: '/'
       });
-  });
+  }]);

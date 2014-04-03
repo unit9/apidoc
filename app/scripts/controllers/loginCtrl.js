@@ -11,7 +11,7 @@ controllers.controller('loginCtrl', ['$scope', '$location', '$firebase', functio
       console.log("---------");
       console.log(user);
       app.$routeProvider.signedIn = true;
-      $location.path('/secure');
+      $location.path('/dashboard');
       $scope.$apply();
     }
     else{
