@@ -11,10 +11,8 @@ controllers.controller('loginCtrl', ['$scope', '$location', '$firebase', functio
       console.log("---------");
       console.log(user);
       app.$routeProvider.signedIn = true;
-      setTimeout(function () {
-        console.log('location', $location);
-        $location.path('/secure');
-      }, 1000);
+      $location.path('/secure');
+      $scope.$apply();
     }
     else{
     }
@@ -31,7 +29,10 @@ controllers.controller('loginCtrl', ['$scope', '$location', '$firebase', functio
 //    password:'test'
 //  });
   /*---------------------------------FUNCTIONS----------------------------------------*/
-
+  $scope.keydown = function(e){
+    if(e.keyCode != 13) return
+    $scope.login();
+  }
   $scope.login = function(){
     auth.login('password',{
       email : $scope.loginValue,
