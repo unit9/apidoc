@@ -5,5 +5,5 @@
 </div>
 <div class="ProjectListPlaceholder row">
     <div class="title">Projects list : </div>
-    <div ng-repeat="project in projects" class="btn-default btn col-md-12">{{project}}</div>
+    <div ng-click="moveTo(project)" ng-repeat="project in projects" class="btn-default btn col-md-12">{{project.name}}</div>
 </div>

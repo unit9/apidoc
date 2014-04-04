@@ -6,7 +6,8 @@ controllers.controller('dashboardCtrl',[
   'fireBaseService',
   'loginService',
   '$location',
-  function($scope,$firebase,$http,apiService,fireBaseService,loginService,$location){
+  '$rootScope',
+  function($scope,$firebase,$http,apiService,fireBaseService,loginService,$location,$rootScope){
 
   /*---------------------------------SERVICES-----------------------------------------*/
 
@@ -20,6 +21,10 @@ controllers.controller('dashboardCtrl',[
       $scope.newApiUrl = null;
 
   /*---------------------------------FUNCTIONS----------------------------------------*/
+      $scope.moveTo=function(project){
+        $rootScope.choosenProject = project;
+        $location.path('/project');
+      }
       $scope.logout = function(){
           loginService.auth.logout();
           app.$routeProvider.signedIn = false;

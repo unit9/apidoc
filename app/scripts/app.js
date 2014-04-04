@@ -26,6 +26,13 @@ var app = angular.module('apidocApp', [
           return $routeProvider.signedIn ? path : '/';
         }
       })
+      .when('/project',{
+        templateUrl: 'views/project.html',
+        controller: 'projectCtrl',
+        redirectTo: function(params,path,search){
+          return $routeProvider.signedIn ? path : '/';
+        }
+      })
       .otherwise({
         redirectTo: '/'
       });

@@ -1,6 +1,7 @@
 services.factory('fireBaseService',['$http','$firebase',function($http,$firebase){
 
   var factory = {};
+  factory.empty = true;
   factory.projects = [];
   factory.db = new Firebase('https://apidocs.firebaseio.com/projects');
 
@@ -20,13 +21,17 @@ services.factory('fireBaseService',['$http','$firebase',function($http,$firebase
 
 
   factory.getAllProjectsNames = function(callback){
-    factory.db.once('value', function(allProjects) {
-      allProjects.forEach(function(project) {
-        var name = project.child('name').val();
-        factory.projects.push(name);
+    if(factory.empty){
+      factory.empty = false;
+      factory.db.once('value', function(allProjects) {
+        allProjects.forEach(function(project) {
+          var name = project.child('name').val();
+          var endpoint = project.child('endpoint').val();
+          factory.projects.push({name:name, endpoint : endpoint});
+        });
+        callback();
       });
-      callback();
-    });
+    }
     return factory.projects;
 
   }
