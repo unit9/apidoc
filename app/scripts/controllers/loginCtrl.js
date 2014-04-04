@@ -1,22 +1,8 @@
 'use strict';
 
-controllers.controller('loginCtrl', ['$scope', '$location', '$firebase', function($scope, $location, $firebase){
+controllers.controller('loginCtrl', ['$scope', '$location', '$firebase','loginService', function($scope, $location, $firebase, loginService){
   /*----------------------------------INIT--------------------------------------------*/
-  var apidocsRef = new Firebase('https://apidocs.firebaseio.com');
-  var auth = new FirebaseSimpleLogin(apidocsRef,function(error,user){
-    if(error){
-      console.log(error);
-    }
-    else if(user){
-      console.log("---------");
-      console.log(user);
-      app.$routeProvider.signedIn = true;
-      $location.path('/dashboard');
-      $scope.$apply();
-    }
-    else{
-    }
-  });
+  loginService.initLoginService(function(){$scope.$apply()});
   /*---------------------------------SERVICES-----------------------------------------*/
 
   /*---------------------------------VARIABLES----------------------------------------*/
@@ -34,7 +20,7 @@ controllers.controller('loginCtrl', ['$scope', '$location', '$firebase', functio
     $scope.login();
   }
   $scope.login = function(){
-    auth.login('password',{
+    loginService.auth.login('password',{
       email : $scope.loginValue,
       password: $scope.passwordValue
     });

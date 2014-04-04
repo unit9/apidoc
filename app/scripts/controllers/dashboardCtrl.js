@@ -1,4 +1,12 @@
-controllers.controller('dashboardCtrl',['$scope','$firebase','$http','apiService','fireBaseService',function($scope,$firebase,$http,apiService,fireBaseService){
+controllers.controller('dashboardCtrl',[
+  '$scope',
+  '$firebase',
+  '$http',
+  'apiService',
+  'fireBaseService',
+  'loginService',
+  '$location',
+  function($scope,$firebase,$http,apiService,fireBaseService,loginService,$location){
 
   /*---------------------------------SERVICES-----------------------------------------*/
 
@@ -12,6 +20,11 @@ controllers.controller('dashboardCtrl',['$scope','$firebase','$http','apiService
       $scope.newApiUrl = null;
 
   /*---------------------------------FUNCTIONS----------------------------------------*/
+      $scope.logout = function(){
+          loginService.auth.logout();
+          app.$routeProvider.signedIn = false;
+          $location.path('/');
+      }
       $scope.addApi = function(){
         $http({
           url: $scope.newApiUrl,
